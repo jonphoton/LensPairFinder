@@ -1,0 +1,35 @@
+vendor,part_number,description,lens_type,focal_length_mm,diameter_mm,na,coating_type,wavelength_min_nm,wavelength_max_nm,center_wavelength_nm,price_usd,url,back_focal_length_mm,substrate_material,is_positive
+Edmund Optics,33-921,f=25mm Achromatic Doublet MgF2 VIS,achromat_doublet,25.0,12.5,0.24,AR_BBAR,400,700,,32.00,https://www.edmundoptics.com/p/33-921,21.8,N-BK7/N-SF5,true
+Edmund Optics,32-327,f=30mm Achromatic Doublet MgF2 VIS,achromat_doublet,30.0,12.5,0.20,AR_BBAR,400,700,,32.00,https://www.edmundoptics.com/p/32-327,27.2,N-BK7/N-SF5,true
+Edmund Optics,45-806,f=40mm Achromatic Doublet MgF2 VIS,achromat_doublet,40.0,12.5,0.15,AR_BBAR,400,700,,32.00,https://www.edmundoptics.com/p/45-806,37.4,N-BK7/N-SF5,true
+Edmund Optics,45-207,f=50mm Achromatic Doublet MgF2 VIS,achromat_doublet,50.0,25.0,0.24,AR_BBAR,400,700,,42.50,https://www.edmundoptics.com/p/45-207,45.2,N-BK7/N-SF5,true
+Edmund Optics,45-208,f=75mm Achromatic Doublet MgF2 VIS,achromat_doublet,75.0,25.0,0.16,AR_BBAR,400,700,,42.50,https://www.edmundoptics.com/p/45-208,71.0,N-BK7/N-SF5,true
+Edmund Optics,45-209,f=100mm Achromatic Doublet MgF2 VIS,achromat_doublet,100.0,25.0,0.12,AR_BBAR,400,700,,42.50,https://www.edmundoptics.com/p/45-209,96.5,N-BK7/N-SF5,true
+Edmund Optics,45-210,f=150mm Achromatic Doublet MgF2 VIS,achromat_doublet,150.0,25.0,0.08,AR_BBAR,400,700,,42.50,https://www.edmundoptics.com/p/45-210,147.1,N-BK7/N-SF5,true
+Edmund Optics,45-211,f=200mm Achromatic Doublet MgF2 VIS,achromat_doublet,200.0,25.0,0.06,AR_BBAR,400,700,,42.50,https://www.edmundoptics.com/p/45-211,197.5,N-BK7/N-SF5,true
+Edmund Optics,45-212,f=250mm Achromatic Doublet MgF2 VIS,achromat_doublet,250.0,25.0,0.05,AR_BBAR,400,700,,47.00,https://www.edmundoptics.com/p/45-212,248.0,N-BK7/N-SF5,true
+Edmund Optics,45-213,f=300mm Achromatic Doublet MgF2 VIS,achromat_doublet,300.0,25.0,0.04,AR_BBAR,400,700,,47.00,https://www.edmundoptics.com/p/45-213,298.1,N-BK7/N-SF5,true
+Edmund Optics,45-214,f=400mm Achromatic Doublet MgF2 VIS,achromat_doublet,400.0,25.0,0.03,AR_BBAR,400,700,,47.00,https://www.edmundoptics.com/p/45-214,398.3,N-BK7/N-SF5,true
+Edmund Optics,45-215,f=500mm Achromatic Doublet MgF2 VIS,achromat_doublet,500.0,25.0,0.025,AR_BBAR,400,700,,47.00,https://www.edmundoptics.com/p/45-215,498.5,N-BK7/N-SF5,true
+Edmund Optics,47-317,f=50mm Achromatic Doublet MgF2 VIS dia=50mm,achromat_doublet,50.0,50.0,0.47,AR_BBAR,400,700,,78.50,https://www.edmundoptics.com/p/47-317,40.2,N-BK7/N-SF5,true
+Edmund Optics,47-319,f=100mm Achromatic Doublet MgF2 VIS dia=50mm,achromat_doublet,100.0,50.0,0.24,AR_BBAR,400,700,,78.50,https://www.edmundoptics.com/p/47-319,92.5,N-BK7/N-SF5,true
+Edmund Optics,47-321,f=200mm Achromatic Doublet MgF2 VIS dia=50mm,achromat_doublet,200.0,50.0,0.12,AR_BBAR,400,700,,78.50,https://www.edmundoptics.com/p/47-321,195.8,N-BK7/N-SF5,true
+Edmund Optics,47-323,f=300mm Achromatic Doublet MgF2 VIS dia=50mm,achromat_doublet,300.0,50.0,0.08,AR_BBAR,400,700,,85.00,https://www.edmundoptics.com/p/47-323,296.8,N-BK7/N-SF5,true
+Edmund Optics,47-325,f=500mm Achromatic Doublet MgF2 VIS dia=50mm,achromat_doublet,500.0,50.0,0.05,AR_BBAR,400,700,,85.00,https://www.edmundoptics.com/p/47-325,497.8,N-BK7/N-SF5,true
+Edmund Optics,49-290,f=50mm NIR Achromatic Doublet 700-1100nm,achromat_doublet,50.0,25.0,0.24,AR_BBAR,700,1100,,45.00,https://www.edmundoptics.com/p/49-290,45.0,N-BK7/N-SF5,true
+Edmund Optics,49-291,f=75mm NIR Achromatic Doublet 700-1100nm,achromat_doublet,75.0,25.0,0.16,AR_BBAR,700,1100,,45.00,https://www.edmundoptics.com/p/49-291,71.0,N-BK7/N-SF5,true
+Edmund Optics,49-292,f=100mm NIR Achromatic Doublet 700-1100nm,achromat_doublet,100.0,25.0,0.12,AR_BBAR,700,1100,,45.00,https://www.edmundoptics.com/p/49-292,96.5,N-BK7/N-SF5,true
+Edmund Optics,49-293,f=150mm NIR Achromatic Doublet 700-1100nm,achromat_doublet,150.0,25.0,0.08,AR_BBAR,700,1100,,45.00,https://www.edmundoptics.com/p/49-293,147.1,N-BK7/N-SF5,true
+Edmund Optics,49-294,f=200mm NIR Achromatic Doublet 700-1100nm,achromat_doublet,200.0,25.0,0.06,AR_BBAR,700,1100,,45.00,https://www.edmundoptics.com/p/49-294,197.5,N-BK7/N-SF5,true
+Edmund Optics,49-295,f=300mm NIR Achromatic Doublet 700-1100nm,achromat_doublet,300.0,25.0,0.04,AR_BBAR,700,1100,,49.00,https://www.edmundoptics.com/p/49-295,298.1,N-BK7/N-SF5,true
+Edmund Optics,49-296,f=500mm NIR Achromatic Doublet 700-1100nm,achromat_doublet,500.0,25.0,0.025,AR_BBAR,700,1100,,49.00,https://www.edmundoptics.com/p/49-296,498.5,N-BK7/N-SF5,true
+Edmund Optics,66-017,f=15mm Precision Asphere VIS,aspheric,15.0,15.0,0.46,AR_BBAR,400,700,,85.00,https://www.edmundoptics.com/p/66-017,12.2,D-ZK3,true
+Edmund Optics,66-019,f=25mm Precision Asphere VIS,aspheric,25.0,25.0,0.46,AR_BBAR,400,700,,105.00,https://www.edmundoptics.com/p/66-019,20.8,D-ZK3,true
+Edmund Optics,66-021,f=50mm Precision Asphere VIS,aspheric,50.0,25.0,0.23,AR_BBAR,400,700,,105.00,https://www.edmundoptics.com/p/66-021,46.2,D-ZK3,true
+Edmund Optics,66-023,f=100mm Precision Asphere VIS,aspheric,100.0,25.0,0.12,AR_BBAR,400,700,,105.00,https://www.edmundoptics.com/p/66-023,97.5,D-ZK3,true
+Edmund Optics,48-633,f=20mm Plano-Convex N-BK7 VIS,plano-convex,20.0,12.0,0.28,AR_BBAR,400,700,,12.50,https://www.edmundoptics.com/p/48-633,18.2,N-BK7,true
+Edmund Optics,48-653,f=50mm Plano-Convex N-BK7 VIS,plano-convex,50.0,12.0,0.11,AR_BBAR,400,700,,12.50,https://www.edmundoptics.com/p/48-653,48.5,N-BK7,true
+Edmund Optics,45-364,f=50mm Plano-Convex N-BK7 VIS dia=25mm,plano-convex,50.0,25.0,0.24,AR_BBAR,400,700,,19.50,https://www.edmundoptics.com/p/45-364,47.0,N-BK7,true
+Edmund Optics,45-370,f=100mm Plano-Convex N-BK7 VIS dia=25mm,plano-convex,100.0,25.0,0.12,AR_BBAR,400,700,,19.50,https://www.edmundoptics.com/p/45-370,98.0,N-BK7,true
+Edmund Optics,45-376,f=200mm Plano-Convex N-BK7 VIS dia=25mm,plano-convex,200.0,25.0,0.06,AR_BBAR,400,700,,19.50,https://www.edmundoptics.com/p/45-376,198.5,N-BK7,true
+Edmund Optics,45-382,f=500mm Plano-Convex N-BK7 VIS dia=25mm,plano-convex,500.0,25.0,0.025,AR_BBAR,400,700,,22.00,https://www.edmundoptics.com/p/45-382,499.0,N-BK7,true

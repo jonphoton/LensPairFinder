@@ -1,0 +1,24 @@
+vendor,part_number,description,lens_type,focal_length_mm,diameter_mm,na,coating_type,wavelength_min_nm,wavelength_max_nm,center_wavelength_nm,price_usd,url,back_focal_length_mm,substrate_material,is_positive
+Newport,KPX082AR.14,f=25.4mm Plano-Convex BK7 AR 430-700nm,plano-convex,25.4,25.4,0.47,AR_BBAR,430,700,,28.00,https://www.newport.com/p/KPX082AR.14,23.0,BK7,true
+Newport,KPX088AR.14,f=50.2mm Plano-Convex BK7 AR 430-700nm,plano-convex,50.2,25.4,0.24,AR_BBAR,430,700,,28.00,https://www.newport.com/p/KPX088AR.14,47.8,BK7,true
+Newport,KPX094AR.14,f=75.6mm Plano-Convex BK7 AR 430-700nm,plano-convex,75.6,25.4,0.16,AR_BBAR,430,700,,28.00,https://www.newport.com/p/KPX094AR.14,73.2,BK7,true
+Newport,KPX097AR.14,f=100mm Plano-Convex BK7 AR 430-700nm,plano-convex,100.0,25.4,0.12,AR_BBAR,430,700,,28.00,https://www.newport.com/p/KPX097AR.14,97.8,BK7,true
+Newport,KPX100AR.14,f=150mm Plano-Convex BK7 AR 430-700nm,plano-convex,150.0,25.4,0.08,AR_BBAR,430,700,,28.00,https://www.newport.com/p/KPX100AR.14,148.2,BK7,true
+Newport,KPX106AR.14,f=250mm Plano-Convex BK7 AR 430-700nm,plano-convex,250.0,25.4,0.05,AR_BBAR,430,700,,28.00,https://www.newport.com/p/KPX106AR.14,249.0,BK7,true
+Newport,KPX109AR.14,f=500mm Plano-Convex BK7 AR 430-700nm,plano-convex,500.0,25.4,0.025,AR_BBAR,430,700,,30.00,https://www.newport.com/p/KPX109AR.14,499.2,BK7,true
+Newport,KPX112AR.14,f=50.2mm Plano-Convex BK7 AR 430-700nm dia=50.8mm,plano-convex,50.2,50.8,0.47,AR_BBAR,430,700,,52.00,https://www.newport.com/p/KPX112AR.14,44.5,BK7,true
+Newport,KPX118AR.14,f=100mm Plano-Convex BK7 AR 430-700nm dia=50.8mm,plano-convex,100.0,50.8,0.24,AR_BBAR,430,700,,52.00,https://www.newport.com/p/KPX118AR.14,94.3,BK7,true
+Newport,KPX124AR.14,f=200mm Plano-Convex BK7 AR 430-700nm dia=50.8mm,plano-convex,200.0,50.8,0.12,AR_BBAR,430,700,,52.00,https://www.newport.com/p/KPX124AR.14,196.8,BK7,true
+Newport,KPX130AR.14,f=500mm Plano-Convex BK7 AR 430-700nm dia=50.8mm,plano-convex,500.0,50.8,0.05,AR_BBAR,430,700,,56.00,https://www.newport.com/p/KPX130AR.14,498.2,BK7,true
+Newport,PAC040AR.14,f=40mm Achromatic Doublet AR 430-700nm,achromat_doublet,40.0,25.4,0.30,AR_BBAR,430,700,,45.00,https://www.newport.com/p/PAC040AR.14,35.2,BK7/SF2,true
+Newport,PAC052AR.14,f=50mm Achromatic Doublet AR 430-700nm,achromat_doublet,50.0,25.4,0.24,AR_BBAR,430,700,,45.00,https://www.newport.com/p/PAC052AR.14,44.8,BK7/SF2,true
+Newport,PAC058AR.14,f=75mm Achromatic Doublet AR 430-700nm,achromat_doublet,75.0,25.4,0.16,AR_BBAR,430,700,,45.00,https://www.newport.com/p/PAC058AR.14,70.5,BK7/SF2,true
+Newport,PAC064AR.14,f=100mm Achromatic Doublet AR 430-700nm,achromat_doublet,100.0,25.4,0.12,AR_BBAR,430,700,,45.00,https://www.newport.com/p/PAC064AR.14,95.8,BK7/SF2,true
+Newport,PAC070AR.14,f=150mm Achromatic Doublet AR 430-700nm,achromat_doublet,150.0,25.4,0.08,AR_BBAR,430,700,,45.00,https://www.newport.com/p/PAC070AR.14,146.5,BK7/SF2,true
+Newport,PAC076AR.14,f=200mm Achromatic Doublet AR 430-700nm,achromat_doublet,200.0,25.4,0.06,AR_BBAR,430,700,,45.00,https://www.newport.com/p/PAC076AR.14,197.0,BK7/SF2,true
+Newport,PAC082AR.14,f=300mm Achromatic Doublet AR 430-700nm,achromat_doublet,300.0,25.4,0.04,AR_BBAR,430,700,,48.00,https://www.newport.com/p/PAC082AR.14,297.5,BK7/SF2,true
+Newport,PAC088AR.14,f=500mm Achromatic Doublet AR 430-700nm,achromat_doublet,500.0,25.4,0.025,AR_BBAR,430,700,,48.00,https://www.newport.com/p/PAC088AR.14,498.0,BK7/SF2,true
+Newport,PAC095AR.14,f=100mm Achromatic Doublet AR 430-700nm dia=50.8mm,achromat_doublet,100.0,50.8,0.24,AR_BBAR,430,700,,82.00,https://www.newport.com/p/PAC095AR.14,91.2,BK7/SF2,true
+Newport,PAC101AR.14,f=200mm Achromatic Doublet AR 430-700nm dia=50.8mm,achromat_doublet,200.0,50.8,0.12,AR_BBAR,430,700,,82.00,https://www.newport.com/p/PAC101AR.14,195.0,BK7/SF2,true
+Newport,PAC107AR.14,f=300mm Achromatic Doublet AR 430-700nm dia=50.8mm,achromat_doublet,300.0,50.8,0.08,AR_BBAR,430,700,,88.00,https://www.newport.com/p/PAC107AR.14,296.5,BK7/SF2,true
+Newport,PAC113AR.14,f=500mm Achromatic Doublet AR 430-700nm dia=50.8mm,achromat_doublet,500.0,50.8,0.05,AR_BBAR,430,700,,88.00,https://www.newport.com/p/PAC113AR.14,497.5,BK7/SF2,true
