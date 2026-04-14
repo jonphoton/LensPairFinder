@@ -6,14 +6,13 @@ from lenspairfinder.db.schema import LensRow, ScrapeMetadata
 
 
 def get_wavelength_compatible_lenses(session: Session, wavelength_nm: float) -> list[LensRow]:
-    """Get all positive lenses whose coating covers the given wavelength.
+    """Get all lenses (positive and negative) whose coating covers the given wavelength.
 
     Includes lenses with no wavelength data (assumed compatible / uncoated).
     Results sorted by focal_length_mm for efficient binary search downstream.
     """
     return (
         session.query(LensRow)
-        .filter(LensRow.is_positive == True)  # noqa: E712
         .filter(
             # Coating covers wavelength, OR no wavelength data (uncoated/unknown)
             ((LensRow.wavelength_min_nm <= wavelength_nm) &

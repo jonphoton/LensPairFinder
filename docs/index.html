@@ -347,6 +347,7 @@
           <thead>
             <tr id="table-head">
               <th data-col="rank"># <span class="sort-arrow"></span></th>
+              <th data-col="config">Config <span class="sort-arrow"></span></th>
               <th data-col="lens1">Lens 1 <span class="sort-arrow"></span></th>
               <th data-col="lens2">Lens 2 <span class="sort-arrow"></span></th>
               <th data-col="type1">Type 1 <span class="sort-arrow"></span></th>
@@ -416,8 +417,9 @@ function minClearAperture_m(w0_m, f_m, lam_m, safety) {
   return safety * 2.0 * beamRadiusAtLens(w0_m, f_m, lam_m);
 }
 
-const HIGH_NA_TYPES = new Set(["aspheric", "achromat_doublet", "triplet"]);
-const ALL_TYPES = new Set(["plano-convex", "biconvex", "achromat_doublet", "aspheric", "triplet", "meniscus"]);
+const HIGH_NA_TYPES = new Set(["aspheric", "achromat_doublet", "triplet", "bestform"]);
+const ALL_TYPES = new Set(["plano-convex", "biconvex", "achromat_doublet", "aspheric", "triplet", "meniscus", "bestform"]);
+const NEGATIVE_TYPES = new Set(["plano-concave", "biconcave"]);
 
 function isTypeSuitable(lensType, na) {
   const acceptable = na > NA_THRESHOLD ? HIGH_NA_TYPES : ALL_TYPES;
@@ -466,57 +468,94 @@ function findLensPairs(w1_um, w2_um, lam_nm, tolFrac, safety) {
   const na1 = numericalAperture(w1_m, lam_m);
   const na2 = numericalAperture(w2_m, lam_m);
 
-  // Filter wavelength-compatible positive lenses and sort by focal length
-  const pool = lensDB.filter(l => {
+  // Filter wavelength-compatible lenses
+  const compatible = lensDB.filter(l => {
     if (l.wavelength_min_nm === null) return true;
     return l.wavelength_min_nm <= lam_nm && l.wavelength_max_nm >= lam_nm;
-  }).sort((a, b) => a.focal_length_mm - b.focal_length_mm);
+  });
 
-  const focalLengths = pool.map(l => l.focal_length_mm);
+  const posPool = compatible.filter(l => l.is_positive && l.focal_length_mm > 0)
+    .sort((a, b) => a.focal_length_mm - b.focal_length_mm);
+  const negPool = compatible.filter(l => !l.is_positive && l.focal_length_mm < 0);
+  const posFocals = posPool.map(l => l.focal_length_mm);
+
   const results = [];
 
-  for (let i = 0; i < pool.length; i++) {
-    const L1 = pool[i];
+  function scoreResult(mError, totalLength, totalCost, typePenalty) {
+    const c = totalCost !== null ? totalCost : 500;
+    return 10.0 * mError + 0.001 * totalLength + 0.002 * c + 2.0 * typePenalty;
+  }
+
+  // --- Keplerian (positive + positive) ---
+  for (let i = 0; i < posPool.length; i++) {
+    const L1 = posPool[i];
     const f1 = L1.focal_length_mm;
     const f2Target = f1 * M;
-    const f2Min = f2Target * (1 - tolFrac);
-    const f2Max = f2Target * (1 + tolFrac);
-
-    const lo = bisectLeft(focalLengths, f2Min);
-    const hi = bisectRight(focalLengths, f2Max);
+    const lo = bisectLeft(posFocals, f2Target * (1 - tolFrac));
+    const hi = bisectRight(posFocals, f2Target * (1 + tolFrac));
 
     for (let j = lo; j < hi; j++) {
       if (i === j) continue;
-      const L2 = pool[j];
+      const L2 = posPool[j];
       const f2 = L2.focal_length_mm;
 
-      // Aperture checks
-      const minDia1 = minClearAperture_m(w1_m, f1 * 1e-3, lam_m, safety) * 1e3;
-      if (L1.diameter_mm < minDia1) continue;
-      const minDia2 = minClearAperture_m(w2_m, f2 * 1e-3, lam_m, safety) * 1e3;
-      if (L2.diameter_mm < minDia2) continue;
+      const minD1 = minClearAperture_m(w1_m, f1 * 1e-3, lam_m, safety) * 1e3;
+      if (L1.diameter_mm < minD1) continue;
+      const minD2 = minClearAperture_m(w2_m, f2 * 1e-3, lam_m, safety) * 1e3;
+      if (L2.diameter_mm < minD2) continue;
 
       const actualM = f2 / f1;
       const mError = Math.abs(actualM - M) / M;
       const totalLength = f1 + f2;
-      const totalCost = (L1.price_usd != null && L2.price_usd != null)
-        ? L1.price_usd + L2.price_usd : null;
+      const totalCost = (L1.price_usd != null && L2.price_usd != null) ? L1.price_usd + L2.price_usd : null;
       const suit1 = isTypeSuitable(L1.lens_type, na1);
       const suit2 = isTypeSuitable(L2.lens_type, na2);
-      const typePenalty = (suit1 ? 0 : 1) + (suit2 ? 0 : 1);
-      const beamR1 = beamRadiusAtLens(w1_m, f1 * 1e-3, lam_m);
-      const beamR2 = beamRadiusAtLens(w2_m, f2 * 1e-3, lam_m);
-      const costForScore = totalCost !== null ? totalCost : 500;
-
-      const score = 10.0 * mError + 0.001 * totalLength + 0.002 * costForScore + 2.0 * typePenalty;
+      const penalty = (suit1 ? 0 : 1) + (suit2 ? 0 : 1);
 
       results.push({
-        lens1: L1, lens2: L2,
-        actualM, mError, totalLength, totalCost, score,
+        lens1: L1, lens2: L2, actualM, mError, totalLength, totalCost,
+        score: scoreResult(mError, totalLength, totalCost, penalty),
         na1, na2,
-        beamDiaL1: beamR1 * 2 * 1e3,
-        beamDiaL2: beamR2 * 2 * 1e3,
-        suit1, suit2,
+        beamDiaL1: beamRadiusAtLens(w1_m, f1 * 1e-3, lam_m) * 2e3,
+        beamDiaL2: beamRadiusAtLens(w2_m, f2 * 1e-3, lam_m) * 2e3,
+        suit1, suit2, configType: 'Keplerian',
+      });
+    }
+  }
+
+  // --- Galilean (negative on side1 + positive on side2) ---
+  // M = f_pos / |f_neg|, length = f_pos - |f_neg|
+  for (const negL of negPool) {
+    const absFneg = Math.abs(negL.focal_length_mm);
+    const fPosTarget = absFneg * M;
+    const lo = bisectLeft(posFocals, fPosTarget * (1 - tolFrac));
+    const hi = bisectRight(posFocals, fPosTarget * (1 + tolFrac));
+
+    for (let j = lo; j < hi; j++) {
+      const posL = posPool[j];
+      const fPos = posL.focal_length_mm;
+      const sysLen = fPos - absFneg;
+      if (sysLen <= 0) continue;
+
+      const minDneg = minClearAperture_m(w1_m, absFneg * 1e-3, lam_m, safety) * 1e3;
+      if (negL.diameter_mm < minDneg) continue;
+      const minDpos = minClearAperture_m(w2_m, fPos * 1e-3, lam_m, safety) * 1e3;
+      if (posL.diameter_mm < minDpos) continue;
+
+      const actualM = fPos / absFneg;
+      const mError = Math.abs(actualM - M) / M;
+      const totalCost = (negL.price_usd != null && posL.price_usd != null) ? negL.price_usd + posL.price_usd : null;
+      const suit1 = NEGATIVE_TYPES.has(negL.lens_type);
+      const suit2 = isTypeSuitable(posL.lens_type, na2);
+      const penalty = (suit1 ? 0 : 1) + (suit2 ? 0 : 1);
+
+      results.push({
+        lens1: negL, lens2: posL, actualM, mError, totalLength: sysLen, totalCost,
+        score: scoreResult(mError, sysLen, totalCost, penalty),
+        na1, na2,
+        beamDiaL1: beamRadiusAtLens(w1_m, absFneg * 1e-3, lam_m) * 2e3,
+        beamDiaL2: beamRadiusAtLens(w2_m, fPos * 1e-3, lam_m) * 2e3,
+        suit1, suit2, configType: 'Galilean',
       });
     }
   }
@@ -590,8 +629,10 @@ function renderResults() {
     tr.onclick = () => selectRow(i);
     const t1cls = r.suit1 ? '' : ' warn';
     const t2cls = r.suit2 ? '' : ' warn';
+    const cfgStyle = r.configType === 'Galilean' ? 'color:var(--ok)' : '';
     tr.innerHTML = `
       <td class="num">${i+1}</td>
+      <td style="${cfgStyle}">${r.configType}</td>
       <td>${r.lens1.vendor} ${r.lens1.part_number}</td>
       <td>${r.lens2.vendor} ${r.lens2.part_number}</td>
       <td class="${t1cls}">${r.lens1.lens_type.replace(/_/g,' ')}</td>
@@ -610,6 +651,7 @@ function renderResults() {
 // Column sorting
 const sortFns = {
   rank: (a,b,i) => 0, // natural order
+  config: (a,b) => a.configType.localeCompare(b.configType),
   lens1: (a,b) => `${a.lens1.vendor} ${a.lens1.part_number}`.localeCompare(`${b.lens1.vendor} ${b.lens1.part_number}`),
   lens2: (a,b) => `${a.lens2.vendor} ${a.lens2.part_number}`.localeCompare(`${b.lens2.vendor} ${b.lens2.part_number}`),
   type1: (a,b) => a.lens1.lens_type.localeCompare(b.lens1.lens_type),
@@ -684,6 +726,7 @@ function renderDetail(r) {
         </div>
       </div>
       <div class="detail-system">
+        <div class="stat"><div class="label">Configuration</div><div class="value">${r.configType}</div></div>
         <div class="stat"><div class="label">Magnification</div><div class="value">${r.actualM.toFixed(3)} (${(r.mError*100).toFixed(1)}% err)</div></div>
         <div class="stat"><div class="label">System Length</div><div class="value">${r.totalLength.toFixed(0)} mm</div></div>
         <div class="stat"><div class="label">Total Cost</div><div class="value">${r.totalCost!=null ? '$'+r.totalCost.toFixed(2) : 'N/A'}</div></div>

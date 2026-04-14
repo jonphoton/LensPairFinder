@@ -101,6 +101,7 @@ def api_search():
                 "na_side2": r.na_side2,
                 "beam_dia_l1_mm": round(r.beam_dia_at_lens1_mm, 3),
                 "beam_dia_l2_mm": round(r.beam_dia_at_lens2_mm, 3),
+                "config_type": r.config_type,
             }
             for i, r in enumerate(results)
         ],

@@ -1,0 +1,22 @@
+vendor,part_number,description,lens_type,focal_length_mm,diameter_mm,na,coating_type,wavelength_min_nm,wavelength_max_nm,center_wavelength_nm,price_usd,url,back_focal_length_mm,substrate_material,is_positive
+TelAztec,TAC-15-AR,f=15mm Nanotextured Asphere AR 400-4500nm,aspheric,15.0,15.0,0.46,nanotexture,400,4500,,395.00,https://www.telaztec.com,,S-LAH64,true
+TelAztec,TAC-25-AR,f=25mm Nanotextured Asphere AR 400-4500nm,aspheric,25.0,25.0,0.46,nanotexture,400,4500,,450.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TAC-50-AR,f=50mm Nanotextured Asphere AR 400-4500nm,aspheric,50.0,25.0,0.23,nanotexture,400,4500,,425.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TAC-75-AR,f=75mm Nanotextured Asphere AR 400-4500nm,aspheric,75.0,25.0,0.16,nanotexture,400,4500,,425.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TAC-100-AR,f=100mm Nanotextured Asphere AR 400-4500nm,aspheric,100.0,25.0,0.12,nanotexture,400,4500,,410.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TAC-150-AR,f=150mm Nanotextured Asphere AR 400-4500nm,aspheric,150.0,25.0,0.08,nanotexture,400,4500,,410.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TAC-200-AR,f=200mm Nanotextured Asphere AR 400-4500nm,aspheric,200.0,25.0,0.06,nanotexture,400,4500,,410.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TAC-50-50-AR,f=50mm Nanotextured Asphere AR 400-4500nm dia=50mm,aspheric,50.0,50.0,0.45,nanotexture,400,4500,,595.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TAC-100-50-AR,f=100mm Nanotextured Asphere AR 400-4500nm dia=50mm,aspheric,100.0,50.0,0.24,nanotexture,400,4500,,550.00,https://www.telasztec.com,,S-LAH64,true
+TelAztec,TPX-25-AR,f=25mm Nanotextured Plano-Convex AR 400-4500nm,plano-convex,25.0,25.0,0.47,nanotexture,400,4500,,195.00,https://www.telasztec.com,,N-BK7,true
+TelAztec,TPX-50-AR,f=50mm Nanotextured Plano-Convex AR 400-4500nm,plano-convex,50.0,25.0,0.24,nanotexture,400,4500,,185.00,https://www.telasztec.com,,N-BK7,true
+TelAztec,TPX-100-AR,f=100mm Nanotextured Plano-Convex AR 400-4500nm,plano-convex,100.0,25.0,0.12,nanotexture,400,4500,,180.00,https://www.telasztec.com,,N-BK7,true
+TelAztec,TPX-200-AR,f=200mm Nanotextured Plano-Convex AR 400-4500nm,plano-convex,200.0,25.0,0.06,nanotexture,400,4500,,180.00,https://www.telasztec.com,,N-BK7,true
+TelAztec,TPX-500-AR,f=500mm Nanotextured Plano-Convex AR 400-4500nm,plano-convex,500.0,25.0,0.025,nanotexture,400,4500,,185.00,https://www.telasztec.com,,N-BK7,true
+TelAztec,TPC-25-AR,f=-25mm Nanotextured Plano-Concave AR 400-4500nm,plano-concave,-25.0,25.0,,nanotexture,400,4500,,195.00,https://www.telasztec.com,,N-BK7,false
+TelAztec,TPC-50-AR,f=-50mm Nanotextured Plano-Concave AR 400-4500nm,plano-concave,-50.0,25.0,,nanotexture,400,4500,,185.00,https://www.telasztec.com,,N-BK7,false
+TelAztec,TPC-100-AR,f=-100mm Nanotextured Plano-Concave AR 400-4500nm,plano-concave,-100.0,25.0,,nanotexture,400,4500,,180.00,https://www.telasztec.com,,N-BK7,false
+TelAztec,TPC-200-AR,f=-200mm Nanotextured Plano-Concave AR 400-4500nm,plano-concave,-200.0,25.0,,nanotexture,400,4500,,180.00,https://www.telasztec.com,,N-BK7,false
+TelAztec,TAD-50-AR,f=50mm Nanotextured Achromat AR 400-4500nm,achromat_doublet,50.0,25.0,0.23,nanotexture,400,4500,,325.00,https://www.telasztec.com,,N-BK7/N-SF2,true
+TelAztec,TAD-100-AR,f=100mm Nanotextured Achromat AR 400-4500nm,achromat_doublet,100.0,25.0,0.12,nanotexture,400,4500,,310.00,https://www.telasztec.com,,N-BK7/N-SF2,true
+TelAztec,TAD-200-AR,f=200mm Nanotextured Achromat AR 400-4500nm,achromat_doublet,200.0,25.0,0.06,nanotexture,400,4500,,310.00,https://www.telasztec.com,,N-BK7/N-SF2,true

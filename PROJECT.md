@@ -41,7 +41,7 @@ python run.py
 - **Static site (docs/):** Pure HTML/CSS/JS with embedded optics engine and JSON lens database
 - **Web server:** Python 3.10+ / Flask / SQLAlchemy / SQLite
 - **Desktop GUI:** PyQt6 (optional)
-- Seed data: 135 curated commercial lenses from 4 vendors
+- Seed data: 209 curated commercial lenses from 5 vendors (Thorlabs, Edmund Optics, Newport, Asphericon, TelAztec)
 - Extensible via CSV/JSON import (see SCRAPING_GUIDE.md)
 
 ## Project Structure
@@ -65,7 +65,7 @@ SCRAPING_GUIDE.md               Instructions for full catalog scraping
 
 ## Current Status
 
-**v0.3.0 — Live on GitHub Pages.** Static site runs in-browser with no backend. Also available as local Flask server or desktop PyQt6 app. 19 tests passing. Column sorting in the web UI.
+**v0.4.0 — Galilean + expanded catalog.** Supports both Keplerian (two positive lenses) and Galilean (negative + positive, more compact) telescope configurations. 209 lenses across 5 vendors including biconvex, bestform, plano-concave, biconcave, fiber collimator aspheres, and TelAztec nanotexture lenses. 20 tests passing. Live on GitHub Pages.
 
 ## Standing Instructions for Claude
 - After every substantive change, automatically update PROJECT.md and commit + push to the git repository.

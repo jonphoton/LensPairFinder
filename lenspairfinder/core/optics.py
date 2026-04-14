@@ -1,4 +1,4 @@
-"""Gaussian beam optics calculations for Keplerian telescope design.
+"""Gaussian beam optics calculations for Keplerian and Galilean telescope design.
 
 All internal calculations use SI units (meters). Conversion helpers are
 provided for the um/nm/mm units used at the GUI boundary.
@@ -6,7 +6,13 @@ provided for the um/nm/mm units used at the GUI boundary.
 
 import math
 
-from lenspairfinder.utils.constants import NA_ASPHERIC_THRESHOLD, HIGH_NA_LENS_TYPES, ALL_LENS_TYPES
+from lenspairfinder.utils.constants import (
+    NA_ASPHERIC_THRESHOLD,
+    HIGH_NA_LENS_TYPES,
+    ALL_POSITIVE_LENS_TYPES,
+    HIGH_NA_NEGATIVE_LENS_TYPES,
+    NEGATIVE_LENS_TYPES,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -51,10 +57,10 @@ def rayleigh_range(w0_m: float, wavelength_m: float) -> float:
 def beam_radius_at_lens(w0_m: float, f_m: float, wavelength_m: float) -> float:
     """Beam 1/e^2 radius at a thin lens one focal length from the waist.
 
-    w(z) = w0 * sqrt(1 + (z / z_R)^2)   with z = f.
+    w(z) = w0 * sqrt(1 + (z / z_R)^2)   with z = |f|.
     """
     z_r = rayleigh_range(w0_m, wavelength_m)
-    return w0_m * math.sqrt(1.0 + (f_m / z_r) ** 2)
+    return w0_m * math.sqrt(1.0 + (abs(f_m) / z_r) ** 2)
 
 
 # ---------------------------------------------------------------------------
@@ -76,23 +82,49 @@ def min_clear_aperture_m(w0_m: float, f_m: float, wavelength_m: float,
     return safety_factor * 2.0 * w_at_lens
 
 
-def system_length_mm(f1_mm: float, f2_mm: float) -> float:
-    """4f Keplerian telescope total length = f1 + f2 (mm)."""
+def keplerian_length_mm(f1_mm: float, f2_mm: float) -> float:
+    """Keplerian telescope total length = f1 + f2 (mm). Both positive."""
     return f1_mm + f2_mm
 
 
-def recommend_lens_types(na: float, threshold: float = NA_ASPHERIC_THRESHOLD) -> set[str]:
-    """Recommend acceptable lens types based on NA.
+def galilean_length_mm(f_neg_mm: float, f_pos_mm: float) -> float:
+    """Galilean telescope total length = f_pos - |f_neg| (mm).
 
-    High NA benefits from aspheres/doublets. Low NA works with anything.
+    f_neg_mm is negative (the diverging lens focal length).
     """
+    return f_pos_mm - abs(f_neg_mm)
+
+
+def is_positive_type_suitable(lens_type: str, na: float,
+                               threshold: float = NA_ASPHERIC_THRESHOLD) -> bool:
+    """Check whether a positive lens type is suitable for the given NA."""
+    if na > threshold:
+        return lens_type in HIGH_NA_LENS_TYPES
+    return lens_type in ALL_POSITIVE_LENS_TYPES
+
+
+def is_negative_type_suitable(lens_type: str, na: float,
+                               threshold: float = NA_ASPHERIC_THRESHOLD) -> bool:
+    """Check whether a negative lens type is suitable for the given NA.
+
+    For negative lenses, all types work at any NA since they don't focus.
+    """
+    return lens_type in NEGATIVE_LENS_TYPES
+
+
+# Keep backwards compatibility
+def recommend_lens_types(na: float, threshold: float = NA_ASPHERIC_THRESHOLD) -> set[str]:
     if na > threshold:
         return HIGH_NA_LENS_TYPES
-    return ALL_LENS_TYPES
+    return ALL_POSITIVE_LENS_TYPES
 
 
 def is_lens_type_suitable(lens_type: str, na: float,
                            threshold: float = NA_ASPHERIC_THRESHOLD) -> bool:
-    """Check whether a lens type is suitable for the given NA."""
     acceptable = recommend_lens_types(na, threshold)
     return lens_type in acceptable
+
+
+def system_length_mm(f1_mm: float, f2_mm: float) -> float:
+    """4f Keplerian telescope total length = f1 + f2 (mm)."""
+    return f1_mm + f2_mm

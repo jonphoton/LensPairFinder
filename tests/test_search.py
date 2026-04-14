@@ -103,7 +103,10 @@ def test_total_length_correct(db_session):
     params = SearchParams(w1_um=50, w2_um=500, wavelength_nm=633)
     results = find_lens_pairs(params, db_session)
     for pair in results:
-        expected = pair.lens1.focal_length_mm + pair.lens2.focal_length_mm
+        if pair.config_type == "Keplerian":
+            expected = pair.lens1.focal_length_mm + pair.lens2.focal_length_mm
+        else:  # Galilean
+            expected = pair.lens2.focal_length_mm - abs(pair.lens1.focal_length_mm)
         assert pair.total_length_mm == pytest.approx(expected)
 
 
@@ -124,4 +127,39 @@ def test_empty_db_returns_empty():
     params = SearchParams(w1_um=50, w2_um=500, wavelength_nm=633)
     results = find_lens_pairs(params, session)
     assert results == []
+    session.close()
+
+
+def test_finds_galilean_pair():
+    """Should find Galilean pair when negative lens is available."""
+    engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(engine)
+    session = sessionmaker(bind=engine)()
+
+    # f=-50mm concave + f=500mm convex -> M = 500/50 = 10
+    session.add(LensRow(
+        vendor="Test", part_number="PC-NEG-050",
+        description="f=-50mm plano-concave", lens_type="plano-concave",
+        focal_length_mm=-50.0, diameter_mm=25.4,
+        coating_type="AR_BBAR", wavelength_min_nm=400, wavelength_max_nm=700,
+        price_usd=18.0, is_positive=False,
+    ))
+    session.add(LensRow(
+        vendor="Test", part_number="AC-POS-500",
+        description="f=500mm doublet", lens_type="achromat_doublet",
+        focal_length_mm=500.0, diameter_mm=50.8, na=0.05,
+        coating_type="AR_BBAR", wavelength_min_nm=400, wavelength_max_nm=700,
+        price_usd=55.0, is_positive=True,
+    ))
+    session.commit()
+
+    params = SearchParams(w1_um=50, w2_um=500, wavelength_nm=633, m_tolerance=0.05)
+    results = find_lens_pairs(params, session)
+
+    galilean = [r for r in results if r.config_type == "Galilean"]
+    assert len(galilean) >= 1
+    g = galilean[0]
+    assert g.actual_magnification == pytest.approx(10.0)
+    # Galilean length = f_pos - |f_neg| = 500 - 50 = 450
+    assert g.total_length_mm == pytest.approx(450.0)
     session.close()

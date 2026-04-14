@@ -1,0 +1,54 @@
+vendor,part_number,description,lens_type,focal_length_mm,diameter_mm,na,coating_type,wavelength_min_nm,wavelength_max_nm,center_wavelength_nm,price_usd,url,back_focal_length_mm,substrate_material,is_positive
+Thorlabs,LB1014-A,f=25mm N-BK7 Bi-Convex AR 350-700nm,biconvex,25.0,25.4,0.47,AR_BBAR,350,700,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1014-A,18.7,N-BK7,true
+Thorlabs,LB1471-A,f=50mm N-BK7 Bi-Convex AR 350-700nm,biconvex,50.0,25.4,0.24,AR_BBAR,350,700,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1471-A,47.0,N-BK7,true
+Thorlabs,LB1757-A,f=30mm N-BK7 Bi-Convex AR 350-700nm,biconvex,30.0,25.4,0.39,AR_BBAR,350,700,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1757-A,25.8,N-BK7,true
+Thorlabs,LB1901-A,f=75mm N-BK7 Bi-Convex AR 350-700nm,biconvex,75.0,25.4,0.16,AR_BBAR,350,700,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1901-A,73.0,N-BK7,true
+Thorlabs,LB1676-A,f=100mm N-BK7 Bi-Convex AR 350-700nm,biconvex,100.0,25.4,0.12,AR_BBAR,350,700,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1676-A,98.3,N-BK7,true
+Thorlabs,LB1199-A,f=200mm N-BK7 Bi-Convex AR 350-700nm,biconvex,200.0,25.4,0.06,AR_BBAR,350,700,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1199-A,199.0,N-BK7,true
+Thorlabs,LB1378-A,f=500mm N-BK7 Bi-Convex AR 350-700nm,biconvex,500.0,25.4,0.025,AR_BBAR,350,700,,22.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1378-A,499.3,N-BK7,true
+Thorlabs,LB1014-B,f=25mm N-BK7 Bi-Convex AR 650-1050nm,biconvex,25.0,25.4,0.47,AR_BBAR,650,1050,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1014-B,18.7,N-BK7,true
+Thorlabs,LB1471-B,f=50mm N-BK7 Bi-Convex AR 650-1050nm,biconvex,50.0,25.4,0.24,AR_BBAR,650,1050,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1471-B,47.0,N-BK7,true
+Thorlabs,LB1676-B,f=100mm N-BK7 Bi-Convex AR 650-1050nm,biconvex,100.0,25.4,0.12,AR_BBAR,650,1050,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1676-B,98.3,N-BK7,true
+Thorlabs,LB1199-B,f=200mm N-BK7 Bi-Convex AR 650-1050nm,biconvex,200.0,25.4,0.06,AR_BBAR,650,1050,,19.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1199-B,199.0,N-BK7,true
+Thorlabs,LB1945-A,f=100mm N-BK7 Bi-Convex AR 350-700nm dia=50.8mm,biconvex,100.0,50.8,0.24,AR_BBAR,350,700,,35.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1945-A,95.0,N-BK7,true
+Thorlabs,LB1869-A,f=200mm N-BK7 Bi-Convex AR 350-700nm dia=50.8mm,biconvex,200.0,50.8,0.12,AR_BBAR,350,700,,35.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1869-A,197.5,N-BK7,true
+Thorlabs,LB1607-A,f=500mm N-BK7 Bi-Convex AR 350-700nm dia=50.8mm,biconvex,500.0,50.8,0.05,AR_BBAR,350,700,,38.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LB1607-A,498.8,N-BK7,true
+Thorlabs,LBF254-050-A,f=50mm N-BK7 Best Form AR 350-700nm,bestform,50.0,25.4,0.23,AR_BBAR,350,700,,21.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LBF254-050-A,46.3,N-BK7,true
+Thorlabs,LBF254-075-A,f=75mm N-BK7 Best Form AR 350-700nm,bestform,75.0,25.4,0.16,AR_BBAR,350,700,,21.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LBF254-075-A,72.1,N-BK7,true
+Thorlabs,LBF254-100-A,f=100mm N-BK7 Best Form AR 350-700nm,bestform,100.0,25.4,0.12,AR_BBAR,350,700,,21.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LBF254-100-A,97.6,N-BK7,true
+Thorlabs,LBF254-200-A,f=200mm N-BK7 Best Form AR 350-700nm,bestform,200.0,25.4,0.06,AR_BBAR,350,700,,21.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LBF254-200-A,198.2,N-BK7,true
+Thorlabs,LBF254-050-B,f=50mm N-BK7 Best Form AR 650-1050nm,bestform,50.0,25.4,0.23,AR_BBAR,650,1050,,21.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LBF254-050-B,46.3,N-BK7,true
+Thorlabs,LBF254-100-B,f=100mm N-BK7 Best Form AR 650-1050nm,bestform,100.0,25.4,0.12,AR_BBAR,650,1050,,21.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LBF254-100-B,97.6,N-BK7,true
+Thorlabs,LBF254-200-B,f=200mm N-BK7 Best Form AR 650-1050nm,bestform,200.0,25.4,0.06,AR_BBAR,650,1050,,21.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LBF254-200-B,198.2,N-BK7,true
+Thorlabs,LC1259-A,f=-25mm N-BK7 Plano-Concave AR 350-700nm,plano-concave,-25.0,25.4,,AR_BBAR,350,700,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1259-A,-26.4,N-BK7,false
+Thorlabs,LC1120-A,f=-40mm N-BK7 Plano-Concave AR 350-700nm,plano-concave,-40.0,25.4,,AR_BBAR,350,700,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1120-A,-41.2,N-BK7,false
+Thorlabs,LC1715-A,f=-50mm N-BK7 Plano-Concave AR 350-700nm,plano-concave,-50.0,25.4,,AR_BBAR,350,700,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1715-A,-51.0,N-BK7,false
+Thorlabs,LC1093-A,f=-75mm N-BK7 Plano-Concave AR 350-700nm,plano-concave,-75.0,25.4,,AR_BBAR,350,700,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1093-A,-76.0,N-BK7,false
+Thorlabs,LC1054-A,f=-100mm N-BK7 Plano-Concave AR 350-700nm,plano-concave,-100.0,25.4,,AR_BBAR,350,700,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1054-A,-100.8,N-BK7,false
+Thorlabs,LC1611-A,f=-150mm N-BK7 Plano-Concave AR 350-700nm,plano-concave,-150.0,25.4,,AR_BBAR,350,700,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1611-A,-150.6,N-BK7,false
+Thorlabs,LC1258-A,f=-200mm N-BK7 Plano-Concave AR 350-700nm,plano-concave,-200.0,25.4,,AR_BBAR,350,700,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1258-A,-200.5,N-BK7,false
+Thorlabs,LC1259-B,f=-25mm N-BK7 Plano-Concave AR 650-1050nm,plano-concave,-25.0,25.4,,AR_BBAR,650,1050,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1259-B,-26.4,N-BK7,false
+Thorlabs,LC1715-B,f=-50mm N-BK7 Plano-Concave AR 650-1050nm,plano-concave,-50.0,25.4,,AR_BBAR,650,1050,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1715-B,-51.0,N-BK7,false
+Thorlabs,LC1054-B,f=-100mm N-BK7 Plano-Concave AR 650-1050nm,plano-concave,-100.0,25.4,,AR_BBAR,650,1050,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1054-B,-100.8,N-BK7,false
+Thorlabs,LC1258-B,f=-200mm N-BK7 Plano-Concave AR 650-1050nm,plano-concave,-200.0,25.4,,AR_BBAR,650,1050,,17.60,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC1258-B,-200.5,N-BK7,false
+Thorlabs,LC2679-A,f=-30mm N-BK7 Bi-Concave AR 350-700nm,biconcave,-30.0,25.4,,AR_BBAR,350,700,,20.50,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC2679-A,-33.0,N-BK7,false
+Thorlabs,LC2969-A,f=-50mm N-BK7 Bi-Concave AR 350-700nm,biconcave,-50.0,25.4,,AR_BBAR,350,700,,20.50,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC2969-A,-51.8,N-BK7,false
+Thorlabs,LC2278-A,f=-75mm N-BK7 Bi-Concave AR 350-700nm,biconcave,-75.0,25.4,,AR_BBAR,350,700,,20.50,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC2278-A,-76.2,N-BK7,false
+Thorlabs,LC2632-A,f=-100mm N-BK7 Bi-Concave AR 350-700nm,biconcave,-100.0,25.4,,AR_BBAR,350,700,,20.50,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC2632-A,-101.2,N-BK7,false
+Thorlabs,LC2679-B,f=-30mm N-BK7 Bi-Concave AR 650-1050nm,biconcave,-30.0,25.4,,AR_BBAR,650,1050,,20.50,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC2679-B,-33.0,N-BK7,false
+Thorlabs,LC2969-B,f=-50mm N-BK7 Bi-Concave AR 650-1050nm,biconcave,-50.0,25.4,,AR_BBAR,650,1050,,20.50,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC2969-B,-51.8,N-BK7,false
+Thorlabs,LC2632-B,f=-100mm N-BK7 Bi-Concave AR 650-1050nm,biconcave,-100.0,25.4,,AR_BBAR,650,1050,,20.50,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC2632-B,-101.2,N-BK7,false
+Thorlabs,LC4252-A,f=-50mm N-BK7 Plano-Concave AR 350-700nm dia=50.8mm,plano-concave,-50.0,50.8,,AR_BBAR,350,700,,32.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC4252-A,-51.5,N-BK7,false
+Thorlabs,LC4210-A,f=-100mm N-BK7 Plano-Concave AR 350-700nm dia=50.8mm,plano-concave,-100.0,50.8,,AR_BBAR,350,700,,32.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC4210-A,-101.0,N-BK7,false
+Thorlabs,LC4240-A,f=-200mm N-BK7 Plano-Concave AR 350-700nm dia=50.8mm,plano-concave,-200.0,50.8,,AR_BBAR,350,700,,32.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=LC4240-A,-200.8,N-BK7,false
+Thorlabs,C230TME-A,f=4.51mm Fiber Collimator Asphere AR 350-700nm,aspheric,4.51,5.0,0.55,AR_BBAR,350,700,,85.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=C230TME-A,2.41,D-ZK3,true
+Thorlabs,C230TME-B,f=4.51mm Fiber Collimator Asphere AR 600-1050nm,aspheric,4.51,5.0,0.55,AR_BBAR,600,1050,,85.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=C230TME-B,2.41,D-ZK3,true
+Thorlabs,C230TME-C,f=4.51mm Fiber Collimator Asphere AR 1050-1620nm,aspheric,4.51,5.0,0.55,AR_BBAR,1050,1620,,85.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=C230TME-C,2.41,D-ZK3,true
+Thorlabs,C220TMD-A,f=11.0mm Fiber Collimator Asphere AR 350-700nm,aspheric,11.0,6.33,0.25,AR_BBAR,350,700,,72.75,https://www.thorlabs.com/thorproduct.cfm?partnumber=C220TMD-A,8.19,D-ZK3,true
+Thorlabs,C220TMD-B,f=11.0mm Fiber Collimator Asphere AR 600-1050nm,aspheric,11.0,6.33,0.25,AR_BBAR,600,1050,,72.75,https://www.thorlabs.com/thorproduct.cfm?partnumber=C220TMD-B,8.19,D-ZK3,true
+Thorlabs,C260TMD-A,f=15.29mm Fiber Collimator Asphere AR 350-700nm,aspheric,15.29,5.0,0.16,AR_BBAR,350,700,,72.75,https://www.thorlabs.com/thorproduct.cfm?partnumber=C260TMD-A,12.17,D-ZK3,true
+Thorlabs,C260TMD-B,f=15.29mm Fiber Collimator Asphere AR 600-1050nm,aspheric,15.29,5.0,0.16,AR_BBAR,600,1050,,72.75,https://www.thorlabs.com/thorproduct.cfm?partnumber=C260TMD-B,12.17,D-ZK3,true
+Thorlabs,C171TMD-A,f=6.20mm Fiber Collimator Asphere AR 350-700nm,aspheric,6.20,6.33,0.40,AR_BBAR,350,700,,78.75,https://www.thorlabs.com/thorproduct.cfm?partnumber=C171TMD-A,3.07,D-ZK3,true
+Thorlabs,C171TMD-B,f=6.20mm Fiber Collimator Asphere AR 600-1050nm,aspheric,6.20,6.33,0.40,AR_BBAR,600,1050,,78.75,https://www.thorlabs.com/thorproduct.cfm?partnumber=C171TMD-B,3.07,D-ZK3,true
+Thorlabs,C390TMD-A,f=2.75mm Fiber Collimator Asphere AR 350-700nm,aspheric,2.75,3.6,0.64,AR_BBAR,350,700,,96.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=C390TMD-A,0.50,D-ZK3,true
+Thorlabs,C390TMD-B,f=2.75mm Fiber Collimator Asphere AR 600-1050nm,aspheric,2.75,3.6,0.64,AR_BBAR,600,1050,,96.00,https://www.thorlabs.com/thorproduct.cfm?partnumber=C390TMD-B,0.50,D-ZK3,true

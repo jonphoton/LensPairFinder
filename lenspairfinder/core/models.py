@@ -59,3 +59,4 @@ class LensPair:
     beam_dia_at_lens2_mm: float
     lens1_type_suitable: bool
     lens2_type_suitable: bool
+    config_type: str = "Keplerian"  # "Keplerian" or "Galilean"

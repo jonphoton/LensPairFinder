@@ -9,7 +9,7 @@ Each CSV file must have a header row with the following columns.
 | vendor | string | Company name, e.g. "Thorlabs" |
 | part_number | string | Vendor part number, e.g. "AC254-050-A" |
 | description | string | Free-text description |
-| lens_type | string | One of: plano-convex, biconvex, achromat_doublet, aspheric, triplet, meniscus |
+| lens_type | string | One of: plano-convex, biconvex, bestform, achromat_doublet, aspheric, triplet, meniscus, plano-concave, biconcave |
 | focal_length_mm | float | Effective focal length in mm |
 | diameter_mm | float | Clear aperture diameter in mm |
 
