@@ -18,16 +18,21 @@ LensPairFinder helps optical engineers and researchers find pairs of commercial 
 
 ## Tech Stack
 
-- Python 3.10+ / PyQt6 GUI / SQLite via SQLAlchemy
+- Python 3.10+ / SQLite via SQLAlchemy
+- **Web interface:** Flask + single-page HTML/JS app (primary)
+- **Desktop GUI:** PyQt6 (optional, install with `pip install -e ".[gui]"`)
 - Seed data: ~155 curated commercial lenses from 4 vendors
 - Extensible via CSV/JSON import (see SCRAPING_GUIDE.md)
 
 ## Project Structure
 
 ```
-run.py                          Entry point: python run.py
+run.py                          Desktop GUI entry point
+run_web.py                      Web interface entry point
 lenspairfinder/
-  app.py                        QApplication bootstrap
+  app.py                        QApplication bootstrap (desktop)
+  web/server.py                 Flask web server + JSON API
+  web/templates/index.html      Single-page web frontend
   core/optics.py                Gaussian beam physics
   core/search.py                Lens pair matching algorithm
   core/models.py                Dataclasses
@@ -36,7 +41,7 @@ lenspairfinder/
   db/queries.py                 Query functions
   db/importer.py                CSV/JSON import with upsert
   db/seed.py                    Auto-load seed data on first run
-  gui/                          PyQt6 GUI panels
+  gui/                          PyQt6 GUI panels (desktop)
 seed_data/                      Curated lens CSVs
 tests/                          pytest test suite (19 tests)
 SCRAPING_GUIDE.md               Instructions for full catalog scraping
@@ -44,14 +49,22 @@ SCRAPING_GUIDE.md               Instructions for full catalog scraping
 
 ## Current Status
 
-**v0.1.0 — Fully functional.** GUI app with search and database management. 19 tests passing. Seed data covers visible and NIR wavelengths across 4 vendors.
+**v0.2.0 — Web + Desktop.** Both interfaces fully functional. 19 tests passing. Seed data covers visible and NIR wavelengths across 4 vendors. Repo is public on GitHub.
 
 ## Running
 
+### Web interface (recommended)
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -e ".[dev]"
+pip install -e .
+python run_web.py           # opens at http://localhost:5000
+python run_web.py 8080      # or specify a port
+```
+
+### Desktop GUI
+```bash
+pip install -e ".[gui]"
 python run.py
 ```
 

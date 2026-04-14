@@ -1,3 +1,4 @@
-PyQt6>=6.5
 SQLAlchemy>=2.0
+Flask>=3.0
 pytest>=7.0
+# Optional: PyQt6>=6.5 (for desktop GUI)

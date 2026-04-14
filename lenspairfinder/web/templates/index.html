@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LensPairFinder</title>
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --surface: #16213e;
+    --surface2: #0f3460;
+    --accent: #e94560;
+    --accent2: #533483;
+    --text: #eee;
+    --text-dim: #999;
+    --ok: #4ecca3;
+    --warn: #f0a500;
+    --border: #2a2a4a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--accent);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header h1 { font-size: 20px; font-weight: 600; }
+  header h1 span { color: var(--accent); }
+  .tabs {
+    display: flex;
+    gap: 4px;
+  }
+  .tab-btn {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    padding: 6px 18px;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    font-size: 13px;
+  }
+  .tab-btn.active {
+    background: var(--surface2);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: flex; }
+
+  /* Search tab layout */
+  #search-tab {
+    flex-direction: column;
+    height: calc(100vh - 52px);
+  }
+  .search-top {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Input panel */
+  .input-panel {
+    width: 300px;
+    min-width: 260px;
+    padding: 16px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+  }
+  .input-panel h2 {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .field { margin-bottom: 12px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .field input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 7px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .computed-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    margin: 12px 0;
+  }
+  .computed-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 3px 0;
+  }
+  .computed-row .label { color: var(--text-dim); }
+  .computed-row .value { font-weight: 600; }
+  .recommendation {
+    color: var(--warn);
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .search-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .search-btn:hover { filter: brightness(1.1); }
+  .search-btn:disabled { opacity: 0.5; cursor: wait; }
+
+  /* Results */
+  .results-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .results-header {
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .results-scroll {
+    flex: 1;
+    overflow: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    position: sticky;
+    top: 0;
+    background: var(--surface2);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    border-bottom: 2px solid var(--accent);
+  }
+  tbody tr {
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr:hover { background: var(--surface2); }
+  tbody tr.selected { background: var(--accent2); }
+  tbody td {
+    padding: 7px 10px;
+    white-space: nowrap;
+  }
+  td.warn { color: var(--warn); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Detail panel */
+  .detail-panel {
+    background: var(--surface);
+    border-top: 2px solid var(--accent);
+    padding: 14px 20px;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .detail-panel h3 {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+    font-size: 13px;
+  }
+  .detail-section { }
+  .detail-section .lens-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .detail-section .specs {
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .detail-system {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 24px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+    align-items: center;
+  }
+  .detail-system .stat { }
+  .detail-system .stat .label { font-size: 11px; color: var(--text-dim); }
+  .detail-system .stat .value { font-size: 15px; font-weight: 600; }
+  .detail-links {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+  }
+  .detail-links a {
+    padding: 5px 14px;
+    background: var(--surface2);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    border: 1px solid var(--accent);
+  }
+  .detail-links a:hover { background: var(--accent); color: #fff; }
+  .empty-detail { color: var(--text-dim); font-size: 13px; }
+
+  /* Database tab */
+  #db-tab {
+    padding: 24px;
+    flex-direction: column;
+    gap: 16px;
+    height: calc(100vh - 52px);
+  }
+  .db-summary {
+    display: flex;
+    gap: 24px;
+  }
+  .db-table-wrap {
+    flex: 2;
+  }
+  .db-table-wrap table { max-width: 700px; }
+  .db-stats {
+    flex: 1;
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .db-stats h3 {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .big-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ok);
+  }
+  .big-label {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>Lens</span>PairFinder</h1>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('search')">Search</button>
+    <button class="tab-btn" onclick="switchTab('db')">Database</button>
+  </div>
+</header>
+
+<!-- Search Tab -->
+<div id="search-tab" class="tab-content active">
+  <div class="search-top">
+    <div class="input-panel">
+      <h2>Telescope Parameters</h2>
+      <div class="field">
+        <label>Beam waist w&#x2081; (&mu;m)</label>
+        <input type="number" id="w1" value="50" min="0.1" step="1">
+      </div>
+      <div class="field">
+        <label>Beam waist w&#x2082; (&mu;m)</label>
+        <input type="number" id="w2" value="500" min="0.1" step="1">
+      </div>
+      <div class="field">
+        <label>Wavelength &lambda; (nm)</label>
+        <input type="number" id="wavelength" value="633" min="200" step="1">
+      </div>
+      <div class="field">
+        <label>M tolerance (%)</label>
+        <input type="number" id="tolerance" value="5" min="0.1" max="50" step="0.5">
+      </div>
+      <div class="field">
+        <label>Aperture safety factor</label>
+        <input type="number" id="safety" value="3.0" min="1" max="10" step="0.5">
+      </div>
+
+      <div class="computed-box" id="computed">
+        <div class="computed-row"><span class="label">Target M:</span><span class="value" id="comp-M">10.000</span></div>
+        <div class="computed-row"><span class="label">NA (side 1):</span><span class="value" id="comp-na1">&mdash;</span></div>
+        <div class="computed-row"><span class="label">NA (side 2):</span><span class="value" id="comp-na2">&mdash;</span></div>
+        <div class="recommendation" id="comp-rec"></div>
+      </div>
+
+      <button class="search-btn" id="search-btn" onclick="runSearch()">Search</button>
+    </div>
+
+    <div class="results-panel">
+      <div class="results-header" id="results-header">Enter parameters and click Search</div>
+      <div class="results-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Lens 1</th>
+              <th>Lens 2</th>
+              <th>Type 1</th>
+              <th>Type 2</th>
+              <th>Actual M</th>
+              <th>M Error</th>
+              <th>Length</th>
+              <th>Cost</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="results-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="detail-panel">
+    <div class="empty-detail">Select a result row to see details.</div>
+  </div>
+</div>
+
+<!-- Database Tab -->
+<div id="db-tab" class="tab-content">
+  <div class="db-summary">
+    <div class="db-table-wrap">
+      <h2 style="font-size:14px; color:var(--accent); margin-bottom:12px; text-transform:uppercase; letter-spacing:1px;">Lens Catalog Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>Lens Count</th>
+            <th>Last Updated</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody id="db-body"></tbody>
+      </table>
+    </div>
+    <div class="db-stats">
+      <h3>Database</h3>
+      <div class="big-number" id="db-total">0</div>
+      <div class="big-label">total lenses</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const NA_THRESHOLD = 0.02;
+let currentResults = [];
+let selectedIdx = -1;
+
+// Live-update computed values
+['w1','w2','wavelength'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateComputed);
+});
+updateComputed();
+
+function updateComputed() {
+  const w1 = parseFloat(document.getElementById('w1').value) || 1;
+  const w2 = parseFloat(document.getElementById('w2').value) || 1;
+  const lam = parseFloat(document.getElementById('wavelength').value) || 633;
+  const M = w2 / w1;
+  const w1_m = w1 * 1e-6, w2_m = w2 * 1e-6, lam_m = lam * 1e-9;
+  const na1 = Math.sin(lam_m / (Math.PI * w1_m));
+  const na2 = Math.sin(lam_m / (Math.PI * w2_m));
+
+  document.getElementById('comp-M').textContent = M.toFixed(3);
+  document.getElementById('comp-na1').textContent = na1 < 0.001 ? na1.toExponential(1) : na1.toFixed(4);
+  document.getElementById('comp-na2').textContent = na2 < 0.001 ? na2.toExponential(1) : na2.toFixed(4);
+
+  const recs = [];
+  if (na1 > NA_THRESHOLD) recs.push('Side 1: high NA \u2014 asphere/doublet recommended');
+  if (na2 > NA_THRESHOLD) recs.push('Side 2: high NA \u2014 asphere/doublet recommended');
+  document.getElementById('comp-rec').textContent = recs.join('\n');
+}
+
+async function runSearch() {
+  const btn = document.getElementById('search-btn');
+  btn.disabled = true;
+  btn.textContent = 'Searching\u2026';
+
+  const body = {
+    w1_um: parseFloat(document.getElementById('w1').value),
+    w2_um: parseFloat(document.getElementById('w2').value),
+    wavelength_nm: parseFloat(document.getElementById('wavelength').value),
+    m_tolerance: parseFloat(document.getElementById('tolerance').value),
+    aperture_safety: parseFloat(document.getElementById('safety').value),
+  };
+
+  try {
+    const resp = await fetch('/api/search', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body),
+    });
+    const data = await resp.json();
+    currentResults = data.results;
+    selectedIdx = -1;
+    renderResults(data);
+  } catch(e) {
+    document.getElementById('results-header').textContent = 'Error: ' + e.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Search';
+  }
+}
+
+function renderResults(data) {
+  document.getElementById('results-header').textContent =
+    `${data.count} pairs found`;
+
+  const tbody = document.getElementById('results-body');
+  tbody.innerHTML = '';
+
+  data.results.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    tr.onclick = () => selectRow(i);
+
+    const type1Class = r.lens1_suitable ? '' : ' warn';
+    const type2Class = r.lens2_suitable ? '' : ' warn';
+
+    tr.innerHTML = `
+      <td class="num">${r.rank}</td>
+      <td>${r.lens1_vendor} ${r.lens1_part}</td>
+      <td>${r.lens2_vendor} ${r.lens2_part}</td>
+      <td class="${type1Class}">${r.lens1_type}</td>
+      <td class="${type2Class}">${r.lens2_type}</td>
+      <td class="num">${r.actual_M.toFixed(3)}</td>
+      <td class="num">${r.m_error_pct.toFixed(1)}%</td>
+      <td class="num">${r.total_length_mm.toFixed(0)} mm</td>
+      <td class="num">${r.total_cost != null ? '$' + r.total_cost.toFixed(2) : 'N/A'}</td>
+      <td class="num">${r.score.toFixed(3)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('detail-panel').innerHTML =
+    '<div class="empty-detail">Select a result row to see details.</div>';
+}
+
+function selectRow(idx) {
+  selectedIdx = idx;
+  const rows = document.querySelectorAll('#results-body tr');
+  rows.forEach((r, i) => r.classList.toggle('selected', i === idx));
+  renderDetail(currentResults[idx]);
+}
+
+function fmtNA(na) {
+  return na < 0.001 ? na.toExponential(1) : na.toFixed(4);
+}
+
+function fmtBeam(mm) {
+  return mm < 0.1 ? (mm * 1000).toFixed(1) + ' \u00b5m' : mm.toFixed(2) + ' mm';
+}
+
+function renderDetail(r) {
+  const panel = document.getElementById('detail-panel');
+  const suitWarn1 = r.lens1_suitable ? '' : ' <span style="color:var(--warn)">(may limit performance at this NA)</span>';
+  const suitWarn2 = r.lens2_suitable ? '' : ' <span style="color:var(--warn)">(may limit performance at this NA)</span>';
+
+  panel.innerHTML = `
+    <h3>Selected Pair</h3>
+    <div class="detail-grid">
+      <div class="detail-section">
+        <div class="lens-title">Lens 1: ${r.lens1_vendor} ${r.lens1_part}</div>
+        <div class="specs">
+          ${r.lens1_desc}<br>
+          f = ${r.lens1_f_mm} mm, dia = ${r.lens1_dia_mm} mm<br>
+          Type: ${r.lens1_type}${suitWarn1}<br>
+          Coating: ${r.lens1_coating} | Price: ${r.lens1_price != null ? '$' + r.lens1_price.toFixed(2) : 'N/A'}
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="lens-title">Lens 2: ${r.lens2_vendor} ${r.lens2_part}</div>
+        <div class="specs">
+          ${r.lens2_desc}<br>
+          f = ${r.lens2_f_mm} mm, dia = ${r.lens2_dia_mm} mm<br>
+          Type: ${r.lens2_type}${suitWarn2}<br>
+          Coating: ${r.lens2_coating} | Price: ${r.lens2_price != null ? '$' + r.lens2_price.toFixed(2) : 'N/A'}
+        </div>
+      </div>
+      <div class="detail-system">
+        <div class="stat"><div class="label">Magnification</div><div class="value">${r.actual_M.toFixed(3)} (${r.m_error_pct.toFixed(1)}% err)</div></div>
+        <div class="stat"><div class="label">System Length</div><div class="value">${r.total_length_mm.toFixed(0)} mm</div></div>
+        <div class="stat"><div class="label">Total Cost</div><div class="value">${r.total_cost != null ? '$' + r.total_cost.toFixed(2) : 'N/A'}</div></div>
+        <div class="stat"><div class="label">Beam at L1 / L2</div><div class="value">${fmtBeam(r.beam_dia_l1_mm)} / ${fmtBeam(r.beam_dia_l2_mm)}</div></div>
+        <div class="detail-links">
+          ${r.lens1_url ? `<a href="${r.lens1_url}" target="_blank">Lens 1 Page</a>` : ''}
+          ${r.lens2_url ? `<a href="${r.lens2_url}" target="_blank">Lens 2 Page</a>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+  if (tab === 'search') {
+    document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+    document.getElementById('search-tab').classList.add('active');
+  } else {
+    document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+    document.getElementById('db-tab').classList.add('active');
+    loadDbInfo();
+  }
+}
+
+async function loadDbInfo() {
+  try {
+    const resp = await fetch('/api/database');
+    const data = await resp.json();
+    document.getElementById('db-total').textContent = data.total;
+    const tbody = document.getElementById('db-body');
+    tbody.innerHTML = '';
+    data.vendors.forEach(v => {
+      const tr = document.createElement('tr');
+      const date = v.last_scraped ? new Date(v.last_scraped).toLocaleDateString() : 'N/A';
+      tr.innerHTML = `<td>${v.vendor}</td><td class="num">${v.count}</td><td>${date}</td><td>${v.source}</td>`;
+      tbody.appendChild(tr);
+    });
+  } catch(e) {
+    console.error('Failed to load DB info', e);
+  }
+}
+
+// Allow Enter key to trigger search
+document.querySelectorAll('.input-panel input').forEach(el => {
+  el.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+});
+</script>
+</body>
+</html>

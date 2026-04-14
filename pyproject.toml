@@ -8,11 +8,14 @@ version = "0.1.0"
 description = "Find commercial lens pairs for beam-expanding/reducing telescopes"
 requires-python = ">=3.10"
 dependencies = [
-    "PyQt6>=6.5",
     "SQLAlchemy>=2.0",
+    "Flask>=3.0",
 ]
 
 [project.optional-dependencies]
+gui = [
+    "PyQt6>=6.5",
+]
 dev = [
     "pytest>=7.0",
 ]
