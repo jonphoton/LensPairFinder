@@ -52,6 +52,20 @@ def api_search():
 
     results = find_lens_pairs(params, session)
 
+    # If no results, check if relaxing aperture safety would help
+    hint = None
+    if not results and params.aperture_safety > 1.5:
+        relaxed = SearchParams(
+            w1_um=params.w1_um, w2_um=params.w2_um,
+            wavelength_nm=params.wavelength_nm,
+            m_tolerance=params.m_tolerance,
+            aperture_safety=1.5,
+            max_results=1,
+        )
+        if find_lens_pairs(relaxed, session):
+            hint = (f"No results with aperture safety factor {params.aperture_safety:.1f}x. "
+                    "Try reducing it — lenses in the catalog are too small at this safety margin.")
+
     # Compute derived values for display
     w1_m = um_to_m(params.w1_um)
     w2_m = um_to_m(params.w2_um)
@@ -61,6 +75,7 @@ def api_search():
     na2 = numerical_aperture(w2_m, lam_m)
 
     return jsonify({
+        "hint": hint,
         "computed": {
             "magnification": round(M, 4),
             "na_side1": na1,

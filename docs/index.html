@@ -613,8 +613,20 @@ function runSearch() {
 
   selectedIdx = -1;
   sortCol = 'score'; sortAsc = true;
-  document.getElementById('results-header').textContent =
-    `${currentResults.length} pairs found in ${elapsed}s`;
+
+  const header = document.getElementById('results-header');
+  if (currentResults.length === 0 && safety > 1.5) {
+    // Check if relaxing aperture safety would help
+    const relaxed = findLensPairs(w1, w2, lam, tol / 100, 1.5);
+    if (relaxed.length > 0) {
+      header.innerHTML = `<span style="color:var(--warn)">No results with aperture safety factor ${safety.toFixed(1)}x. Try reducing it &mdash; lenses in the catalog are too small at this safety margin.</span>`;
+    } else {
+      header.textContent = '0 pairs found — no matching lenses in catalog for these parameters';
+    }
+  } else {
+    header.textContent = `${currentResults.length} pairs found in ${elapsed}s`;
+  }
+
   renderResults();
   document.getElementById('detail-panel').innerHTML =
     '<div class="empty-detail">Select a result row to see details.</div>';

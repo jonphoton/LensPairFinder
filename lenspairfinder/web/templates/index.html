@@ -444,8 +444,12 @@ async function runSearch() {
 }
 
 function renderResults(data) {
-  document.getElementById('results-header').textContent =
-    `${data.count} pairs found`;
+  const header = document.getElementById('results-header');
+  if (data.hint) {
+    header.innerHTML = `<span style="color:#f0a500">${data.hint}</span>`;
+  } else {
+    header.textContent = `${data.count} pairs found`;
+  }
 
   const tbody = document.getElementById('results-body');
   tbody.innerHTML = '';
