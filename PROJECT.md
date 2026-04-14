@@ -41,7 +41,7 @@ python run.py
 - **Static site (docs/):** Pure HTML/CSS/JS with embedded optics engine and JSON lens database
 - **Web server:** Python 3.10+ / Flask / SQLAlchemy / SQLite
 - **Desktop GUI:** PyQt6 (optional)
-- Seed data: 209 curated commercial lenses from 5 vendors (Thorlabs, Edmund Optics, Newport, Asphericon, TelAztec)
+- Seed data: 266 curated commercial lenses from 5 vendors (Thorlabs, Edmund Optics, Newport, Asphericon, TelAztec)
 - Extensible via CSV/JSON import (see SCRAPING_GUIDE.md)
 
 ## Project Structure
